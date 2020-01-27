@@ -1,0 +1,29 @@
+How to run  
+
+1- using Ansible command line:
+
+>_ ansible-playbook --connection=local localhost playbook.yml all
+
+2- using inventory:
+
+File name = /etc/ansible/hosts
+
+[localhost]
+localhost ansible_connection=local
+
+>_ ansible-playbook -i hosts playbook.yml all
+
+3- using Ansible configuration file: 
+
+File name = /etc/ansible/ansible.cfg
+
+[defaults]
+transport = local
+
+4- using playbook header:
+
+- hosts: localhost
+  connection: local
+ 
+Source: https://gist.github.com/alces/caa3e7e5f46f9595f715f0f55eef65c1
+ 
