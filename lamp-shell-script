@@ -32,3 +32,12 @@ sudo apachectl restart
 sed -i '/mysql/{n;n;n;n;s/'\''DB_DATABASE'\'', '\''.*'\''/'\''DB_DATABASE'\'', '\''myproject'\''/g}' /var/www/myProject/config/database.php 
 sed -i '/mysql/{n;n;n;n;n;s/'\''DB_USERNAME'\'', '\''.*'\''/'\''DB_USERNAME'\'', '\''myproject'\''/g}' /var/www/myProject/config/database.php
 sed -i '/mysql/{n;n;n;n;n;n;s/'\''DB_PASSWORD'\'', '\''.*'\''/'\''DB_PASSWORD'\'', '\''mypassword'\''/g}' /var/www/myProject/config/database.php
+
+
+#createUser.sql
+
+CREATE DATABASE myproject;
+CREATE USER 'myproject'@'localhost' IDENTIFIED BY 'mypassword';
+GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'localhost';
+FLUSH PRIVILEGES;
+
