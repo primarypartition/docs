@@ -1,0 +1,79 @@
+#1
+
+config.vm.define "debian" do |debian|
+    debian.vm.hostname = "debian"
+    debian.vm.box = "bento/ubuntu-18.04"    
+    debian.vm.network "private_network", ip: "192.10.10.10"
+
+    debian.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+    end
+
+    debian.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+    SHELL
+end
+
+#2
+
+config.vm.define "redhat" do |redhat|
+    redhat.vm.hostname = "redhat"
+    redhat.vm.box = "centos/7"    
+    redhat.vm.network "private_network", ip: "192.20.20.20"
+
+    redhat.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+    end
+  end
+
+#3
+
+  config.vm.define "debian" do |debian|
+    debian.vm.hostname = "debian"
+    debian.vm.box = "bento/ubuntu-18.04"    
+    debian.vm.network "private_network", ip: "192.10.10.10"
+
+    debian.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+    end
+
+    debian.vm.provision "shell", path: "script.sh"
+    
+  end
+  
+#4
+
+  config.vm.define "debian" do |debian|
+    debian.vm.hostname = "debian"
+    debian.vm.box = "bento/ubuntu-18.04"    
+    debian.vm.network "private_network", ip: "192.10.10.10"
+
+    debian.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+    end
+
+    debian.vm.provision "shell", path: "script.sh"
+    
+  end
+
+#5
+
+ config.vm.define "debian" do |debian|
+    debian.vm.hostname = "debian"
+    debian.vm.box = "bento/ubuntu-18.04"    
+    debian.vm.network "private_network", ip: "192.10.10.10"
+
+    debian.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+    end
+
+    debian.vm.provision "chef-solo", run_list: ["myrecipe"]
+    debian.vm.synced_folder "www", "/var/www/"
+    
+  end
+
