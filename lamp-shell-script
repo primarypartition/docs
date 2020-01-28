@@ -29,15 +29,19 @@ sudo sed -i 's/DocumentRoot.*/DocumentRoot \/var\/www\/myProject\/public/' /etc/
 # Restart Apache2 to reflect the changes
 sudo apachectl restart
 # Configure the database name, user and password in the Laravel configuration file to point to th newly cerated database
+# sed -i '/mysql/{n;n;n;n;s/'\''DB_HOST'\'', '\''.*'\''/'\''DB_HOST'\'', '\''IP_ADDRESS'\''/g}' /var/www/myProject/config/database.php 
 sed -i '/mysql/{n;n;n;n;s/'\''DB_DATABASE'\'', '\''.*'\''/'\''DB_DATABASE'\'', '\''myproject'\''/g}' /var/www/myProject/config/database.php 
 sed -i '/mysql/{n;n;n;n;n;s/'\''DB_USERNAME'\'', '\''.*'\''/'\''DB_USERNAME'\'', '\''myproject'\''/g}' /var/www/myProject/config/database.php
 sed -i '/mysql/{n;n;n;n;n;n;s/'\''DB_PASSWORD'\'', '\''.*'\''/'\''DB_PASSWORD'\'', '\''mypassword'\''/g}' /var/www/myProject/config/database.php
 
 
+
 #createUser.sql
 
 CREATE DATABASE myproject;
-CREATE USER 'myproject'@'localhost' IDENTIFIED BY 'mypassword';
-GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'localhost';
+#CREATE USER 'myproject'@'localhost' IDENTIFIED BY 'mypassword';
+#GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'localhost';
+CREATE USER 'myproject'@'%' IDENTIFIED BY 'mypassword';
+GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'%';
 FLUSH PRIVILEGES;
 
